@@ -14,30 +14,40 @@ import javax.websocket.server.ServerEndpoint;
 public class TestSocket {
 	public static WebSocketSessionManager sessionManager = new WebSocketSessionManager();
 
-    @OnOpen
-    public void onOpen(@PathParam("room-descriptor") final String pRoomDescriptor, final Session pSession) {
-        sessionManager.addSession(pRoomDescriptor, pSession);
-    }
+	@OnOpen
+	public void onOpen(
+			@PathParam("room-descriptor") final String pRoomDescriptor,
+			final Session pSession) {
+		sessionManager.addSession(pRoomDescriptor, pSession);
+	}
 
-    @OnClose
-    public void onClose(@PathParam("room-descriptor") final String pRoomDescriptor, final Session pSession) {
-        sessionManager.removeSession(pRoomDescriptor, pSession);
-    }
+	@OnClose
+	public void onClose(
+			@PathParam("room-descriptor") final String pRoomDescriptor,
+			final Session pSession) {
+		sessionManager.removeSession(pRoomDescriptor, pSession);
+	}
 
-    @OnMessage
-    public void onMessage(@PathParam("room-descriptor") final String pRoomDescriptor, final String pText) {
-        for (final Session session : sessionManager.getSessions(pRoomDescriptor)) {
-            try {
-                session.getBasicRemote().sendText("Re: " + pText);
-            } catch (final IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+	@OnMessage
+	public void onMessage(
+			@PathParam("room-descriptor") final String pRoomDescriptor,
+			final String pText) {
 
-    @OnError
-    public void onError(Session session, Throwable cause) {
-        System.out.println("error : " + session.getId() + ", " + cause.getMessage());
-    }
+		for (final Session session : sessionManager
+				.getSessions(pRoomDescriptor)) {
+			try {
+
+				session.getBasicRemote().sendText(sessionManager.wordJudge(pRoomDescriptor, pText));
+			} catch (final IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@OnError
+	public void onError(Session session, Throwable cause) {
+		System.out.println("error : " + session.getId() + ", "
+				+ cause.getMessage());
+	}
 
 }

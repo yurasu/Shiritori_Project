@@ -11,11 +11,7 @@ $(function() {
 		$('#msgbox').text(receive.data);
 	};
 
-	ws.onopen = function() {
-		ws.send('Hello WebSocket');
-	}
-
-	$("#message").keyup(function(e) {
+	$("#send").click(function(e) {
 		ws.send($("#message").val()); // WebSocketを使いサーバにメッセージを送信
 	});
 

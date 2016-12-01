@@ -12,6 +12,7 @@
     <body>
 
 		<input type="text" id="message" />
+		<input type="button" value="Send" id="send">
         <span id="msgbox"></span>
     </body>
 </html>
