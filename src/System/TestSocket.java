@@ -32,12 +32,12 @@ public class TestSocket {
 	public void onMessage(
 			@PathParam("room-descriptor") final String pRoomDescriptor,
 			final String pText) {
-
+		String str =sessionManager.wordJudge(pRoomDescriptor, pText);
 		for (final Session session : sessionManager
 				.getSessions(pRoomDescriptor)) {
 			try {
 
-				session.getBasicRemote().sendText(sessionManager.wordJudge(pRoomDescriptor, pText));
+				session.getBasicRemote().sendText(str);
 			} catch (final IOException e) {
 				e.printStackTrace();
 			}

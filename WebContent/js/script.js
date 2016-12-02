@@ -8,8 +8,12 @@ $(function() {
 	var ws = new WebSocket(url);
 
 	ws.onmessage = function(receive) {
-		$('#msgbox').text(receive.data);
+		$('#msgbox').append(receive.data);
 	};
+
+	ws.onopen = function(){
+		$('#msgbox').append("しりとり");
+	}
 
 	$("#send").click(function(e) {
 		ws.send($("#message").val()); // WebSocketを使いサーバにメッセージを送信
