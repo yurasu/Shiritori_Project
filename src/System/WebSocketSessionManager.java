@@ -1,6 +1,7 @@
-package System;
+package system;
 
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -24,7 +25,7 @@ public class WebSocketSessionManager {
 		public Judge get(final Object key) {
 			Judge ret = super.get(key);
 			if (ret == null) {
-				ret = new Judge();
+				ret = new Judge(4);
 				this.put((String) key, ret);
 			}
 			return ret;
@@ -35,6 +36,10 @@ public class WebSocketSessionManager {
 		synchronized (this.getLock(pRoomDescriptor)) {
 			this.sessions.get(pRoomDescriptor).add(pSession);
 		}
+	}
+
+	public Set<String> getKeys(){
+		return sessions.keySet();
 	}
 
 	public List<Session> getSessions(final String pRoomDescriptor) {
@@ -55,12 +60,19 @@ public class WebSocketSessionManager {
 		return alreadyLock == null ? newLock : alreadyLock;
 	}
 
-	public String wordJudge(final String pRoomDescriptor, final String word) {
+	public String wordJudge(final String pRoomDescriptor, final String word, int session_id) {
 		synchronized (this.getLock(pRoomDescriptor)) {
-			return this.map.get(pRoomDescriptor).judgment(word);
+			return this.map.get(pRoomDescriptor).judgment(word,session_id);
 		}
 	}
 
+	public void joinPlayer(int session_id, final String pRoomDescriptor){
+		synchronized (this.getLock(pRoomDescriptor)) {
+			map.get(pRoomDescriptor).player_add(session_id);
+		}
+	}
+
+	//使ってない
 	public boolean wordIn(final String pRoomDescriptor, final String word) {
 		synchronized (this.getLock(pRoomDescriptor)) {
 			return this.map.get(pRoomDescriptor).wordIn(word);

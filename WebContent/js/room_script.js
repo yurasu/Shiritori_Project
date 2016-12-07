@@ -16,7 +16,13 @@ $(function() {
 	}
 
 	$("#send").click(function(e) {
-		ws.send($("#message").val()); // WebSocketを使いサーバにメッセージを送信
+		var str = "remark,"+$("#message").val();
+		ws.send(str); // WebSocketを使いサーバにメッセージを送信
+	});
+
+	$("#join").click(function(e) {
+		var str = "join,"+$("#message").val();
+		ws.send(str); // WebSocketを使いサーバにメッセージを送信
 	});
 
 });

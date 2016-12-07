@@ -4,18 +4,23 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="./css/bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/appointment_script.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
 	○○さん
 	<a href="">部屋をつくる</a>
 	<a href="">部屋を探す</a>
-	<br/>
-	<a href="/Shiritori_Project/TestBattle/tes">test</a><br/>
+	<br />
+	<a href="/Shiritori_Project/TestBattle/tes" id="appo">test</a>
+	<br />
 
 	<%
-		for(int i = 0; i<10; i++){
-			out.print("<br/>"+"<a href='/Shiritori_Project/TestBattle/ " +i+ "'>"+"room"+i+"</a>");
+		for (int i = 0; i < 10; i++) {
+			out.print("<br/>" + "<a href='/Shiritori_Project/TestBattle/"
+					+ i + "' id ="+i +">" + "room" + i + "</a>");
 		}
 	%>
 </body>
