@@ -15,7 +15,7 @@ import javax.websocket.server.ServerEndpoint;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @ServerEndpoint(value = "/wsdemo/{room-descriptor}")
-public class TestSocket {
+public class RoomSocket {
 	public static WebSocketSessionManager sessionManager = new WebSocketSessionManager();
 
 	@OnOpen
@@ -53,6 +53,14 @@ public class TestSocket {
 		String[] msg = pText.split(",");
 		if(msg[0].equals("join")){
 			sessionManager.joinPlayer(Integer.parseInt(pSession.getId()), pRoomDescriptor);
+			for (final Session session : sessionManager
+					.getSessions(pRoomDescriptor)) {
+				try {
+					session.getBasicRemote().sendText("参加しました");
+				} catch (final IOException e) {
+					e.printStackTrace();
+				}
+			}
 			return;
 		}
 

@@ -4,7 +4,7 @@
 $(function() {
 	var dir = location.pathname.split("/");
 
-	var url = 'ws://localhost:8080/Shiritori_Project/wsdemo/'+ dir[dir.length-1];
+	var url = 'ws://'+location.host+'/Shiritori_Project/wsdemo/'+ dir[dir.length-1];
 	var ws = new WebSocket(url);
 
 	ws.onmessage = function(receive) {

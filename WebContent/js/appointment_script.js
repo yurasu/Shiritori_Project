@@ -1,6 +1,6 @@
 $(function() {
 
-	var url = 'ws://localhost:8080/Shiritori_Project/wsdemo/appo';
+	var url = 'ws://'+location.host+'/Shiritori_Project/wsdemo/appo';
 	var ws = new WebSocket(url);
 
 	ws.onmessage = function(receive) {
