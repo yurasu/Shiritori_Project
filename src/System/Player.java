@@ -2,10 +2,10 @@ package system;
 
 public class Player {
 	public int life;
-	public int sessionID;
+	public String sessionID;
 	public boolean dead;
 	public int turn;
-	public Player(int sessionID, int turn){
+	public Player(String sessionID, int turn){
 		this.sessionID = sessionID;
 		this.dead = false;
 		this.life = 5;
@@ -16,7 +16,7 @@ public class Player {
 		return dead;
 	}
 
-	public int getSessionID(){
+	public String getSessionID(){
 		return sessionID;
 	}
 

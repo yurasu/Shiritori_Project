@@ -1,9 +1,5 @@
 package system;
 
-import java.io.IOException;
-import java.util.HashMap;
-
-import javax.websocket.EncodeException;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
@@ -12,68 +8,41 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import abstract_class.SessionManager;
 
 @ServerEndpoint(value = "/wsdemo/{room-descriptor}")
 public class RoomSocket {
-	public static WebSocketSessionManager sessionManager = new WebSocketSessionManager();
+
+	SessionManager manager = SocketSessionManager.getInstance((j, msg, s) -> {
+		String[] parseMsg = msg.split(",");
+		String sendmsg;
+		if (parseMsg[0].equals("join")) {
+			sendmsg = j.addPlayer(s.getId());
+			return sendmsg;
+		} else if (parseMsg[0].equals("close")) {
+			sendmsg = j.removePlayer(s.getId());
+			return sendmsg;
+		}
+		sendmsg = j.judgment(parseMsg[1], s.getId());
+		return sendmsg;
+	});
 
 	@OnOpen
-	public void onOpen(
-			@PathParam("room-descriptor") final String pRoomDescriptor,
-			final Session pSession) throws IOException, EncodeException {
-		sessionManager.addSession(pRoomDescriptor, pSession);
-		if (pRoomDescriptor.equals("appo")) {
-			sendConnectnum(pSession);
-		}
-	}
-
-	public void sendConnectnum(Session pSession) throws IOException {
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		for (String s : sessionManager.getKeys()) {
-			int connect = sessionManager.getSessions(s).size();
-			map.put(s, connect);
-		}
-		ObjectMapper mapper = new ObjectMapper();
-		String str = mapper.writeValueAsString(map);
-		pSession.getBasicRemote().sendText(str);
+	public void onOpen(@PathParam("room-descriptor") final String room,
+			final Session session) {
+		manager.arbitration(room, session);
 	}
 
 	@OnClose
-	public void onClose(
-			@PathParam("room-descriptor") final String pRoomDescriptor,
-			final Session pSession) {
-		sessionManager.removeSession(pRoomDescriptor, pSession);
+	public void onClose(@PathParam("room-descriptor") final String room,
+			final Session session) {
+		manager.removeSession(room, session);
 	}
 
 	@OnMessage
-	public void onMessage(
-			@PathParam("room-descriptor") final String pRoomDescriptor,
-			final String pText, Session pSession) {
-		String[] msg = pText.split(",");
-		if(msg[0].equals("join")){
-			sessionManager.joinPlayer(Integer.parseInt(pSession.getId()), pRoomDescriptor);
-			for (final Session session : sessionManager
-					.getSessions(pRoomDescriptor)) {
-				try {
-					session.getBasicRemote().sendText("参加しました");
-				} catch (final IOException e) {
-					e.printStackTrace();
-				}
-			}
-			return;
-		}
-
-		String str = sessionManager.wordJudge(pRoomDescriptor, msg[1],
-				Integer.parseInt(pSession.getId()));
-		for (final Session session : sessionManager
-				.getSessions(pRoomDescriptor)) {
-			try {
-				session.getBasicRemote().sendText(str);
-			} catch (final IOException e) {
-				e.printStackTrace();
-			}
-		}
+	public void onMessage(@PathParam("room-descriptor") final String room,
+			Session session, final String msg) {
+		manager.arbitration(room, session, msg);
 	}
 
 	@OnError
@@ -82,5 +51,4 @@ public class RoomSocket {
 				+ cause.getMessage());
 		cause.getStackTrace();
 	}
-
 }
