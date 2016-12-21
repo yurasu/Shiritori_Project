@@ -48,8 +48,7 @@ public class SocketSessionManager implements SessionManager {
 	@Override
 	public void arbitration(String room, Session session, String msg) {
 		synchronized (this.getLock(room)) {
-			String sendmsg = f.msgparse(this.judgeMap.get(room), msg, session);
-			sendMsg(room, sendmsg);
+			f.msgparse(this.judgeMap.get(room), msg, session, this.sessionMap.get(room));
 		}
 	}
 

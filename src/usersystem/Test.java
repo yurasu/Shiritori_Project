@@ -36,11 +36,7 @@ public class Test extends HttpServlet {
 		// TODO Auto-generated method stubtry {
 		PrintWriter pw = response.getWriter();
 		try {
-			//本番環境では変更の可能性あり
-			Class.forName("org.sqlite.JDBC");
-			//本番環境では変更の可能性あり
-			Connection con = DriverManager.getConnection("jdbc:sqlite:C:\\pleiades\\workspace\\Shiritori_Project\\user");
-
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3307/user", "root", "jikken2016");
 			Statement stmt = con.createStatement();
 			String sql = "SELECT * FROM users";
 			ResultSet rs = stmt.executeQuery(sql);

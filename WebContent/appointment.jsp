@@ -11,8 +11,7 @@
 </head>
 <body>
 	○○さん
-	<a href="">部屋をつくる</a>
-	<a href="">部屋を探す</a>
+
 	<br />
 	<a href="/Shiritori_Project/TestBattle/tes" id="appo">test</a>
 	<br />

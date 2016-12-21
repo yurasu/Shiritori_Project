@@ -1,0 +1,49 @@
+@CHARSET "UTF-8";
+
+#player1 {
+	width: 50%;
+	height: 50%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background-color: #FFB6C1;
+}
+
+#player2 {
+	width: 50%;
+	height: 50%;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	background-color: #00FFFF;
+}
+
+#player3 {
+	width: 50%;
+	height: 50%;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	background-color: #F0FFF0;
+}
+
+#player4 {
+	width: 50%;
+	height: 50%;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	background-color: #FFDEAD;
+}
+
+#system {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	width: 25%;
+	height: 25%;
+	border: solid #000000;
+}

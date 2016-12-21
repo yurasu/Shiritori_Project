@@ -30,7 +30,7 @@ public class NormalJudge extends Judge {
 		}
 		logAdd(str);
 		order++;
-		return str;
+		return "remark,"+session_id+","+str;
 	}
 
 	public Player get_player(String session_id) {
@@ -56,15 +56,18 @@ public class NormalJudge extends Judge {
 
 	@Override
 	public String addPlayer(String session_id) {
+		if(turn >= 4){
+			return "現在4人参加しているので参加できません";
+		}
 		players.add(new Player(session_id, turn));
 		turn++;
-		return "参加しました。";
+		return "join"+","+session_id+",player"+turn+",参加しました。";
 	}
 
 	@Override
 	public String removePlayer(String session_id) {
 		players.remove(get_player_index(session_id));
-		return "接続が切れました";
+		return "close,"+session_id+",接続が切れました";
 	}
 
 }
