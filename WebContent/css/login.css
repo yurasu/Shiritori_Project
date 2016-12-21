@@ -1,5 +1,48 @@
-p.sample {
-color: #000000;
-background-color: #f8dce0;
-background-image: url("../image/1.jpg")
+@font-face {
+	font-family: MyFont;
+	src: url(../fonts/PixelMplus10-Regular.ttf) format("truetype");
+}
+
+#title_container {
+	position: absolute;
+	top: 25%; left : 50%;
+	-webkit-transform: translateY(-50%) translateX(-50%);
+	transform: translateY(-50%) translateX(-50%);
+	left: 50%;
+}
+
+#title {
+	font-family: MyFont;
+	color: #ffffff;
+}
+
+#panel-lapper {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translateY(-50%) translateX(-50%);
+	transform: translateY(-50%) translateX(-50%)
+}
+
+.panel {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	opacity: 0.8; /* 55Åìïsìßñæìx(ÅÅ45Åììßâﬂ) */
+	width: 30%;
+	height: 35%;
+	background-color: #000000;
+}
+
+.input-group {
+	margin-bottom: 20px;
+	color: #ffffff;
+}
+
+body {
+	background: url(../image/login_background.jpg) center center/cover
+		no-repeat fixed;
 }
