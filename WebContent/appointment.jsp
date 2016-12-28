@@ -12,10 +12,6 @@
 <body>
 	○○さん
 
-	<br />
-	<a href="/Shiritori_Project/TestBattle/tes" id="appo">test</a>
-	<br />
-
 	<%
 		for (int i = 0; i < 10; i++) {
 			out.print("<br/>" + "<a href='/Shiritori_Project/TestBattle/"

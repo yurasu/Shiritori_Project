@@ -1,49 +1,105 @@
 @CHARSET "UTF-8";
 
-#player1 {
-	width: 50%;
-	height: 50%;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	background-color: #FFB6C1;
+#container {
+	height: 100%;
+	width: 100%;
+	background-color: #EEEEEE;
 }
 
-#player2 {
-	width: 50%;
-	height: 50%;
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	background-color: #00FFFF;
+.header_title {
+	width: 85%;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	border-radius: 10px;
 }
 
-#player3 {
-	width: 50%;
-	height: 50%;
-	position: absolute;
-	bottom: 0px;
-	left: 0px;
-	background-color: #F0FFF0;
+.player_info {
+	width: 85%;
+	height: 5%;
+	background-color: #FFFFFF;
+	margin-right: auto;
+	margin-left: auto;
+	vertical-align: middle;
+	text-align: center;
+	margin-top: 1%;
 }
 
-#player4 {
-	width: 50%;
-	height: 50%;
+#start-div {
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#start-btn {
+	bottom: 5%;
 	position: absolute;
-	bottom: 0px;
-	right: 0px;
-	background-color: #FFDEAD;
+}
+
+#players {
+	height: 100%;
+	width: 25%;
+	float: left;
+	border-right: 1px solid;
 }
 
 #system {
+	height: 100%;
+	width: 75%;
+	float: left;
+}
+
+#input-remark {
+	font-size: 14px;
+	font-weight: 400;
+	width: 94.6%;
+	padding: 6px 12px;
+}
+
+#player-form {
+	margin-top: 2%;
+	margin-right: auto;
+	margin-left: auto;
+	width: 85%;
+	margin-right: auto;
+}
+
+#msgarea {
+	overflow: scroll;
+	background-color: #FFFFFF;
+	margin-right: auto;
+	margin-left: auto;
+	height: 80%;
+	width: 85%;
+}
+
+.player_msg {
+	display: inline-block;
+	margin-top: 1%;
+}
+
+.img_player {
+	height: 10%;
+	width: 10%;
+	float: left;
+}
+
+.balloon {
+	background-color: #EEEEEE;
+	padding: 20px;
+	position: relative;
+	width: 15em;
+	height: 10%;
+	float: left;
+}
+
+.balloon:after {
+	border-right: 12px solid #EEEEEE;
+	border-top: 12px solid transparent;
+	border-bottom: 12px solid transparent;
+	content: '';
+	margin-top: -10px;
 	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	margin: auto;
-	width: 25%;
-	height: 25%;
-	border: solid #000000;
+	left: -12px;
+	top: 50%;
 }
