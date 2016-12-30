@@ -21,6 +21,7 @@
 			</div>
 			<div id="modal-body">
 				<div id="modal-btn" class="input-group">
+					<input type="hidden" id="username" value=<%out.print(session.getAttribute("name")); %> >
 					<button type="button" id="join" class="btn btn-success modal-btn">参加!</button>
 					<button type="button" class="btn btn-danger modal-btn">退出...</button>
 				</div>
@@ -30,9 +31,10 @@
 		<div id="players">
 			<h3 class="header_title bg-primary">参加者一覧</h3>
 
-			<div id="game-btn">
+			<div id="start-div">
 				<button class="btn btn-success " type="button" id="start-btn">START</button>
 			</div>
+
 		</div>
 		<div id="system">
 			<h3 class="header_title bg-primary">Room</h3>

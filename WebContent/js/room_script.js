@@ -12,12 +12,11 @@ $(function() {
 
 	var players = {};
 	$(window).on('beforeunload', function() {
-
 		if (join) {
 			var msg = "close," + $("#message").val();
 			ws.send(msg); // WebSocketを使いサーバにメッセージを送信
-			ws.close();
 		}
+		ws.close();
 	});
 
 	ws.onmessage = function(receive) {
@@ -38,16 +37,20 @@ $(function() {
 		} else if (array_data[0] == "remark") {
 
 			var str = "<div class=\"player_msg\">"
+					+ "<div class = \"player_img\">"
 					+ "<img src=\"../image/icon_h.jpg\" class=\"img-rounded img_player\">"
+					+ players[array_data[1]] + "</div>"
 					+ "<div class=\"balloon\">" + array_data[2] + "</div>"
 					+ "</div>";
 
 			if (array_data[array_data.length - 1] == "you") {
 				join = true;
 				str = "<div class=\"playe_msg\">"
+						+ "<div>"
 						+ "<img src=\"../image/icon_h.jpg\" class=\"img-rounded img_player\">"
-						+ "<div class=\"balloon bg-success\">" + array_data[2]+ "</div>"
-						+ "</div>";
+						+ players[array_data[1]] + "</div>"
+						+ "<div class=\"balloon bg-success\">" + array_data[2]
+						+ "</div>" + "</div>";
 			}
 			$("#msgarea").append(str);
 
@@ -56,12 +59,19 @@ $(function() {
 		} else if (array_data[0] == "system") {
 			var str = "<div class=\"system_msg\">" + array_data[1] + "</div>";
 			$("#msgarea").append(str);
+		} else if (array_data[0] == "players") {
+			for (var i = 1; i < array_data.length; i++) {
+				$("#players").append(
+						"<div class=\"player_info\">" + array_data[i]
+								+ "</div>");
+			}
 		}
 
 	};
 
 	ws.onopen = function() {
-		$('#message').val("しりとり");
+		var msg = "open,";
+		ws.send(msg);
 	}
 
 	$("#send").click(function(e) {
@@ -83,7 +93,7 @@ $(function() {
 		if (join) {
 			return;
 		}
-		var msg = "join," + $("#message").val();
+		var msg = "join," + $("#username").val();
 		ws.send(msg); // WebSocketを使いサーバにメッセージを送信
 	});
 

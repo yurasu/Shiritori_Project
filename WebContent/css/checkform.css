@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+.info_danger {
+	z-index: 1;
+    position: absolute;
+    color: #FFFFFF;
+    background-color: #FF0000;
+    text-align: center;
+}
+
+.info_success {
+	z-index: 1;
+    position: absolute;
+    color: #00FF00;
+	background-color: #008000;
+	text-align: center;
+}

@@ -9,39 +9,28 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-
   <servlet>
-    <servlet-name>
-      room
-    </servlet-name>
-	<jsp-file>
+    <servlet-name>room</servlet-name>
+    <jsp-file>
 		/Room.jsp
 	</jsp-file>
   </servlet>
   <servlet-mapping>
-      <servlet-name>
-        room
-  </servlet-name>
-      <url-pattern>
+    <servlet-name>room</servlet-name>
+    <url-pattern>
         /TestBattle/*
       </url-pattern>
   </servlet-mapping>
-
-   <servlet>
-    <servlet-name>
-      test
-    </servlet-name>
-	<servlet-class>
+  <servlet>
+    <servlet-name>test</servlet-name>
+    <servlet-class>
 		usersystem.Test
 	</servlet-class>
   </servlet>
   <servlet-mapping>
-      <servlet-name>
-        test
-      </servlet-name>
-      <url-pattern>
+    <servlet-name>test</servlet-name>
+    <url-pattern>
         /Test
       </url-pattern>
   </servlet-mapping>
-
 </web-app>

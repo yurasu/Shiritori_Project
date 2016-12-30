@@ -57,7 +57,7 @@ public class SocketSessionManager implements SessionManager {
 		Set<String> roomSet = sessionMap.keySet();
 		ConcurrentMap<String, Integer> map = new ConcurrentHashMap<String, Integer>();
 		for (String room : roomSet) {
-			map.put(room, judgeMap.get(room).getPlayers());
+			map.put(room, judgeMap.get(room).getPlayers_size());
 		}
 		ObjectMapper mapper = new ObjectMapper();
 		try {
@@ -90,7 +90,13 @@ public class SocketSessionManager implements SessionManager {
 
 	@Override
 	public void removeSession(String room, Session session) {
-		sessionMap.get(room).remove(session);
+		try {
+			session.close();
+			sessionMap.get(room).remove(session);
+		} catch (IOException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 	}
 
 

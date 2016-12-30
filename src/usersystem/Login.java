@@ -28,41 +28,7 @@ public class Login extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stubtry
-		try {
-			// 本番環境では変更の可能性あり
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost/user", "root", "jikken2016");
-			String name = "test";
-			String input_password = "test";
-			Statement stmt = con.createStatement();
-			String sql = "SELECT * FROM user where name = " + "'"+name +"'";
-			ResultSet rs = stmt.executeQuery(sql);
-			response.setContentType("text/html");
-			response.setCharacterEncoding("Shift-JIS");
-			if (rs.next()) {
-				String password = rs.getString("name");
-				if(!password.equals(input_password)){
-					response.getWriter().println("パスワードが違う");
-				}
-			}else{
-				response.getWriter().println("おまえは誰だ");
-			}
-			response.getWriter().println("動作確認");
-			HttpSession session = request.getSession(true);
-			session.setAttribute("name", name);
-			stmt.close();
-			con.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+
 
 
 	protected void doPost(HttpServletRequest request,
