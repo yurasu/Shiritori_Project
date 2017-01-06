@@ -71,6 +71,30 @@ $(function(){
 			alert('正しい値を入力してください');
 			return false;
 		}
-		 $('#form_id').submit();
+		$("#loginform").off("submit");
+		$.ajax({
+			type : "POST",
+			url : "http://localhost:8080/Shiritori_Project/Check_Login",
+			dataType : "JSON",
+			data:{"username":$.toJSON($("#username").val()),
+				"password":$.toJSON($("#password").val())
+			},
+			success : function(json) {
+				if(json == "No"){
+					alert("ユーザーネームかパスワードが間違っています");
+					$("#loginform").off("submit");
+					return;
+				}else{
+					 $("#loginform").submit();
+				}
+
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert("エラーが発生しました：" + textStatus + ":\n" + errorThrown);
+				$("#loginform").off("submit");
+				return;
+			}
+		});
+		return false;
 	});
 })

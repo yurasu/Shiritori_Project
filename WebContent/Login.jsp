@@ -22,11 +22,11 @@
 			<div id="panel-lapper">
 				<form id="loginform" action="/Shiritori_Project/Login" method="post">
 					<div class="input-group">
-						ユーザー名<br /> <input type="text" name="name" class="form-control check_form"
+						ユーザー名<br /> <input type="text" name="name" class="form-control check_form" id="username"
 							placeholder="太郎">
 					</div>
 					<div class="input-group">
-						パスワード<br /> <input type="password" class="form-control check_password"
+						パスワード<br /> <input type="password" class="form-control check_password" id="password"
 							name="password">
 					</div>
 					<div class="input-group">

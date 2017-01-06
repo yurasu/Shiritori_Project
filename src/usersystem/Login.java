@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,11 +54,12 @@ public class Login extends HttpServlet {
 			}else{
 				response.getWriter().println("おまえは誰だ");
 			}
-			response.getWriter().println("動作確認");
 			HttpSession session = request.getSession(true);
 			session.setAttribute("name", name);
 			stmt.close();
 			con.close();
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/appointment.jsp");
+			dispatcher.forward(request,response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
