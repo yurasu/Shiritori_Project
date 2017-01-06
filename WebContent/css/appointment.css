@@ -1,0 +1,34 @@
+@CHARSET "UTF-8";
+
+@font-face {
+	font-family: MyFont;
+	src: url(../fonts/PixelMplus10-Regular.ttf) format("truetype");
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	font-family: MyFont;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	background: #111111;
+}
+
+body>#container {
+	height: 100%;
+}
+
+
+#room_list {
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}
+
+#container {
+	width: 100%;
+	height: 100%;
+}

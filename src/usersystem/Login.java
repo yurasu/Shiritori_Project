@@ -6,7 +6,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -58,8 +57,7 @@ public class Login extends HttpServlet {
 			session.setAttribute("name", name);
 			stmt.close();
 			con.close();
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/appointment.jsp");
-			dispatcher.forward(request,response);
+			response.sendRedirect("/Shiritori_Project/appointment.jsp");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

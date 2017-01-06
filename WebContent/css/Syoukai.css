@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+
+@font-face {
+	font-family: MyFont;
+	src: url(../fonts/PixelMplus10-Regular.ttf) format("truetype");
+}
+
+body {
+	font-family: MyFont;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	color: #ffffff;
+	background: #111111;
+}
+
+#text {
+	margin-left: 10%;
+	margin-right: auto;
+	width: 50%;
+}
+
+p:first-letter {
+	font-size: 2em;
+}

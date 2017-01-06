@@ -74,7 +74,7 @@ $(function(){
 		$("#loginform").off("submit");
 		$.ajax({
 			type : "POST",
-			url : "http://localhost:8080/Shiritori_Project/Check_Login",
+			url : "http://"+location.host +"/Shiritori_Project/Check_Login",
 			dataType : "JSON",
 			data:{"username":$.toJSON($("#username").val()),
 				"password":$.toJSON($("#password").val())

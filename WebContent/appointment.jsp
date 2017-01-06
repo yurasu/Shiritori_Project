@@ -26,9 +26,9 @@
 
 			<div class="collapse navbar-collapse" id="navbarEexample1">
 				<ul class="nav navbar-nav">
-					<li><a href="#">しりとりプロジェクトとは</a></li>
+					<li><a href="./Syoukai.jsp">しりとりプロジェクトとは</a></li>
 					<li class="active"><a href="#">ルーム一覧</a></li>
-					<li><a href="#">ちょっとしたルール説明</a></li>
+					<li><a href="./Rule.jsp">ちょっとしたルール説明</a></li>
 				</ul>
 			</div>
 		</div>

@@ -18,7 +18,7 @@ $(function(){
 		}
 		$.ajax({
 			type : "POST",
-			url : "http://localhost:8080/Shiritori_Project/Check_User",
+			url :"http://"+location.host +"/Shiritori_Project/Check_User",
 			dataType : "json",
 			data:{"requestJs":$.toJSON($(this).val())},
 			success : function(json) {
