@@ -48,10 +48,10 @@ public class Login extends HttpServlet {
 			if (rs.next()) {
 				String password = rs.getString("name");
 				if(!password.equals(input_password)){
-					response.getWriter().println("パスワードが違う");
+					response.sendRedirect("/Shiritori_Project/Login.jsp");
 				}
 			}else{
-				response.getWriter().println("おまえは誰だ");
+				response.sendRedirect("/Shiritori_Project/Login.jsp");
 			}
 			HttpSession session = request.getSession(true);
 			session.setAttribute("name", name);

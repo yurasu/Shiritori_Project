@@ -1,6 +1,5 @@
 package usersystem;
 
-import java.io.IOException;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -13,29 +12,24 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class LoginFilter implements Filter {
-	HttpSession session;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		session = request.getSession(true);
-		System.out.println("filte");
-
-	}
-
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) {
-		System.out.println("filte");
+	public void doFilter(ServletRequest request, ServletResponse response,
+			FilterChain chain) {
 		try {
-			if (session != null) {
-				System.out.println("aaaaa");
-				chain.doFilter(request, response);
-			} else {
-				System.out.println("セッションがありません");
-				((HttpServletResponse) response).sendRedirect("/Shiritori_Project/Login.jsp");
+			HttpSession session = ((HttpServletRequest) request)
+					.getSession(false);
+			if (session == null) {
+				((HttpServletResponse) response)
+				.sendRedirect("/Shiritori_Project/Login.jsp");
 
 			}
-		} catch (ServletException se) {
-
-		} catch (IOException e) {
+			if(session.getAttribute("name") == null){
+				((HttpServletResponse) response)
+				.sendRedirect("/Shiritori_Project/Login.jsp");
+			}
+			chain.doFilter(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
